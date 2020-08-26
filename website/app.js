@@ -15,7 +15,11 @@ function performAction(e){
 const newZip =  document.getElementById('zip').value;
 getForecast(baseURL,newZip, apiKey)
 .then(function(data){
-  postData('temperature', {temperature:data.temp, date:newDate, userResponse:feelings})
+  postData('/temperature', {temperature:data.temp, date:newDate, userResponse:feelings})
+
+  //Update UI
+updateUI()
+
 }) 
 
 }
@@ -54,3 +58,19 @@ const postData = async ( url = '', data = {}) =>{
   }
 }
 
+const updateUI = async () => {
+  const request = await fetch('/all')
+  try{
+    const allData = await request.json()
+    console.log(allData);
+
+  console.log(allData);
+  document.getElementById('date').innerHTML = allData[0].date;
+  document.getElementById('temp').innerHTML = allData[0].temperature;
+  document.getElementById('userResponse').innerHTML = allData[0].userResponse;
+
+
+} catch (error){
+  console.log('error', error)
+}
+}

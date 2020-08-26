@@ -31,7 +31,7 @@ const port = 8000;
 const server = app.listen(port, listening);
 function listening () {
     console.log('server running')
-    console.log('running on localhost: {$port}');
+    console.log('running on localhost: ${port}');
 }
 
 // get
@@ -40,7 +40,7 @@ app.get('/all', function (req, res) {
 res.send(projectData)
 });
 
-app.post('temperature', addTemperature)
+app.post('/temperature', addTemperature)
 
 function addTemperature (req, res) {
     
@@ -54,4 +54,3 @@ function addTemperature (req, res) {
     projectData.push(newEntry)
     console.log(projectData)
 }
-

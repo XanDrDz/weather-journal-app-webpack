@@ -40,7 +40,7 @@ app.get('/all', function (req, res) {
 res.send(projectData)
 });
 
-app.post('/temperature', addTemperature)
+app.post('/', addTemperature)
 
 function addTemperature (req, res) {
     

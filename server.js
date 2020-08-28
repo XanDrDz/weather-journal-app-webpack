@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+let projectData = [];
 
 
 // Require Express to run server and routes
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 // Cors for cross origin allowance
 
-const cors = require('cors');
+const cors = require('CORS');
 app.use(cors());
 
 // Initialize the main project folder
@@ -40,17 +40,18 @@ app.get('/all', function (req, res) {
 res.send(projectData)
 });
 
-app.post('/', addTemperature)
+app.post('/all', addTemperature);
 
 function addTemperature (req, res) {
+
     
-    newEntry = {
-        temperature: req.body.temperature,
+   let newEntry = {
+        temp: req.body.temp,
         date: req.body.date,
         userResponse: req.body.userResponse
     }
+    projectData.push(newEntry);
+    console.log(projectData);
+    res.send(projectData);
 
-    
-    projectData.push(newEntry)
-    console.log(projectData)
 }

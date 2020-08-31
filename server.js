@@ -48,7 +48,7 @@ function addTemperature (req, res) {
    let newEntry = {
         temp: req.body.temp,
         date: req.body.date,
-        userResponse: req.body.userResponse
+        userResponse: req.body.userResponse,
     }
     projectData.push(newEntry);
     console.log(projectData);

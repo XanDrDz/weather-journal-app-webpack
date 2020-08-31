@@ -3,7 +3,7 @@
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
-let feelings = document.getElementById('feelings').value;
+
 
 let baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip='
 let apiKey = '&appid=19c2aabe433bf85adec8693c492b7e38';
@@ -36,6 +36,7 @@ document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(e){
 const newZip =  document.getElementById('zip').value;
+const feelings = document.getElementById('feelings').value;
 getForecast(baseURL,newZip, apiKey)
 
   //Update UI
@@ -46,7 +47,7 @@ getForecast(baseURL,newZip, apiKey)
 
   postData('/all', {temp:data.main.temp, date:newDate, userResponse:feelings});
 
-
+updateUI();
 }) 
 
 }
@@ -77,9 +78,9 @@ const updateUI = async () => {
     console.log(allData);
 
   console.log(allData);
-  document.getElementById('date').innerHTML = allData[0].date;
-  document.getElementById('temp').innerHTML = allData[0].temp;
-  document.getElementById('userResponse').innerHTML = allData[0].userResponse;
+  document.getElementById('date').innerHTML = allData[allData.length-1].date;
+  document.getElementById('temp').innerHTML = allData[allData.length-1].temp;
+  document.getElementById('content').innerHTML = allData[allData.length-1].userResponse;
 
 
 } catch (error){

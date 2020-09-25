@@ -6,33 +6,34 @@ let projectData = [];
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+dotenv.config();
+var path = require('path')
+const mockAPIResponse = require('./mockAPI.js')
+const cors = require('CORS');
+const fetch = require('node-fetch')
 
+dotenv.config();
 // Start up an instance of app
 
 const app = express();
+
+app.use(cors());
+
+app.use(express.static('dist'));
 
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Cors for cross origin allowance
-
-const cors = require('CORS');
-app.use(cors());
-
-// Initialize the main project folder
-app.use(express.static('website'));
 
 
 // Setup Server
 
-const port = 8000;
-const server = app.listen(port, listening);
-function listening () {
-    console.log('server running')
-    console.log('running on localhost: ${port}');
-}
+app.listen(8081, function () {
+    console.log('App listening on port 8081')
+})
 
 // get
 
